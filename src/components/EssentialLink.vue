@@ -1,7 +1,7 @@
 <template>
-  <q-item 
-    clickable 
-    tag="router-link" 
+  <q-item
+    clickable
+    tag="router-link"
     :to="props.link"
     :active="isActive"
     active-class="bg-primary text-white"
@@ -51,15 +51,15 @@ const isActive = computed(() => {
     const [path, queryString] = props.link.split('?')
     const queryParams = new URLSearchParams(queryString)
     const filterParam = queryParams.get('filter')
-    
+
     return route.path === path && route.query.filter === filterParam
   }
-  
+
   // For base dashboard link without query params, only active when NO filter is present
   if (props.link === '/dashboard') {
     return route.path === '/dashboard' && !route.query.filter
   }
-  
+
   // Exact path match
   return route.path === props.link
 })
